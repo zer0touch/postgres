@@ -34,3 +34,5 @@ SELECT bdr.bdr_group_join(
 ```
 
 (Make sure to replace node names and hosts with appropriate values)
+
+You may also run into issues with dns if you are clustering across hosts
