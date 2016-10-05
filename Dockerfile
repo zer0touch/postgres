@@ -8,12 +8,18 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PG_MAJOR 9.4
 ENV PG_VERSION 9.4.1-2jessie
 ENV LANG en_US.utf8
+ENV DEBIAN_FRONTEND noninteractive
+ENV PATH /usr/lib/postgresql/$PG_MAJOR/bin:$PATH
+ENV PGDATA /var/lib/postgresql/data
+ENV POSTGRES_USER artifactory
+VOLUME /var/lib/postgresql/data
+
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r postgres && useradd -r -g postgres postgres
 
 # grab gosu for easy step-down from root
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* && \
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \
   && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
   && chmod +x /usr/local/bin/gosu \
   && apt-get purge -y --auto-remove curl
@@ -40,8 +46,6 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
-
-VOLUME /var/lib/postgresql/data
 
 COPY docker-entrypoint.sh /
 
