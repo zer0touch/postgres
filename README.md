@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/zer0touch/postgres.svg?branch=master)](https://travis-ci.org/zer0touch/postgres)
 =======
->>>>>>> fa8b7b8c7c475732cfaf651ef4a4fb34e9b5be3d
 # Docker image for postgres 9.4 with BDR support
 
 Based on Debian Jessie. Includes a patched postgres with support for [BDR](http://bdr-project.org/)
@@ -39,8 +37,5 @@ SELECT bdr.bdr_group_join(
 
 (Make sure to replace node names and hosts with appropriate values)
 
-<<<<<<< HEAD
 You may also run into issues with dns if you are clustering across hosts - consul to the rescue
 =======
-You may also run into issues with dns if you are clustering across hosts
->>>>>>> fa8b7b8c7c475732cfaf651ef4a4fb34e9b5be3d
